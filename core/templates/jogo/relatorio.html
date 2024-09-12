@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Relatório de Jogos{% endblock %}
+
+{% block conteudo %}
+    <article>
+        <h2>Relatório de Jogos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Jogador</th>
+                    <th>Palavra</th>
+                    <th>Data</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jogo in jogos %}
+                    <tr>
+                        <td>{{ jogo.jogador.nome }}</td>
+                        <td>{{ jogo.palavra.palavra }}</td>
+                        <td>{{ jogo.data_jogo }}</td>
+                        <td>{{ jogo.acertou|yesno:"Acertou,Errou" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+{% endblock %}

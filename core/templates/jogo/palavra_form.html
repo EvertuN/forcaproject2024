@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Adicionar Palavra{% endblock %}
+
+{% block conteudo %}
+    <article>
+        <h2>Adicionar Nova Palavra</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
+    </article>
+{% endblock %}

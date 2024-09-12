@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Jogar Forca{% endblock %}
+
+{% block conteudo %}
+<article>
+    <form method="post">
+        {% csrf_token %}
+        <label>Você Venceu 😊</label>
+        <p>A palavra era: {{ palavra.palavra }}</p>
+        <a class="outline" href="{% url 'home' %}" role="button">Jogar novamente</a>
+    </form>
+    <audio autoplay>
+        <source src="{% static 'media/vitoria.mp3' %}" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+</article>
+{% endblock %}

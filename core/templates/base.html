@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titulo %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" rel="stylesheet"/>
+</head>
+<body>
+<main class="container">
+    <nav>
+        <ul>
+            <li style="font-size:2rem"><strong><a href="{% url 'home' %}">🎮</a>&nbsp;&nbsp;&nbsp;Jogo da Forca</strong></li>
+        </ul>
+        <ul>
+            <li><a href="{% url 'temas' %}">Temas</a></li>
+            {% if request.user.is_authenticated %}
+            <li>
+                <details class="dropdown">
+                <summary>
+                    {{ request.user.get_full_name }}
+                </summary>
+                <ul dir="rtl">
+                <li><a href="{% url 'relatorio' %}">Relatórios</a></li>
+                <li><a href="{% url 'logoutuser' %}">🔌Sair</a></li>
+                </ul>
+                </details>
+            </li>
+            {% else %}
+            <li><a class="outline" href="{% url 'loginuser' %}" role="button">Entrar</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block conteudo %}
+    {% endblock %}
+</main>
+{% block scripts %}{% endblock %}
+</body>
+</html>

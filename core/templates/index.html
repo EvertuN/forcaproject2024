@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Jogo da Forca - Início{% endblock %}
+
+{% block conteudo %}
+    <article>
+        <h2>Bem-vindo ao Jogo da Forca</h2>
+        <p>Escolha um tema para começar a jogar!</p>
+        <p><a href="{% url 'temas' %}" role="button">Ver Temas</a></p>
+    </article>
+{% endblock %}

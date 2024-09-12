@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block conteudo %}
+  <article data-theme="dark">
+      <h2>Log-in</h2>
+      {% if form.errors %}
+      <h4>Verifique seu usuário e senha e tente novamente!</h4>
+      {% else %}
+      <h4>Use o formulário abaixo para entrar!</h4>
+      {% endif %}
+      <form method="post">
+          {% csrf_token %}
+          {{ form.as_div }}
+          <input type="hidden" name="next" value="{{ next }}">
+          <input type="submit" role="button" class="light" value="Entrar">
+      </form>
+  </article>
+{% endblock %}

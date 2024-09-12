@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <article data-theme="dark">
+        <h2>Log-out</h2>
+        <h4>Você está desconectado do nosso sistema, você pode:</h4>
+        <p><a href="{% url 'loginuser' %}">Entrar novamente.</a></p>
+        <p><a href="{% url 'home' %}">Continuar como visitante.</a></p>
+    </article>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Jogar Forca{% endblock %}
+
+{% block conteudo %}
+{% load static %}
+<article>
+    <h2>Tema: {{ tema.nome }}</h2>
+
+    <h3>Palavra: {{ palavra_display }}</h3>
+
+    <img id="imagemForca" src="{% static 'imagens/'|add:imagem_forca %}" alt="Forca" style="align-self: flex-start; margin-right: 20px;">
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="letra">Escolha uma letra:</label>
+        <input type="text" id="letra" name="letra" maxlength="1" required>
+        <button type="submit">Enviar</button>
+    </form>
+
+    {% if letra_ja_usada %}
+        <p style="color: red;">Essa letra já foi usada!</p>
+    {% endif %}
+
+    <p>Tentativas restantes: {{ tentativas_restantes }}</p>
+
+    <p>Letras erradas: {{ letras_erradas }}</p>
+</article>
+
+<script>
+    const imagem = document.getElementById('imagemForca');
+    imagem.style.height = '200px';
+    imagem.style.width = '200px';
+</script>
+{% endblock %}

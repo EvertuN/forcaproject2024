@@ -1,29 +1,16 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Relatório de Jogos{% endblock %}
+{% block titulo %}Escolha um Tema{% endblock %}
 
 {% block conteudo %}
-    <article>
-        <h2>Relatório de Jogos</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Jogador</th>
-                    <th>Palavra</th>
-                    <th>Data</th>
-                    <th>Resultado</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for jogo in jogos %}
-                    <tr>
-                        <td>{{ jogo.jogador.nome }}</td>
-                        <td>{{ jogo.palavra.palavra }}</td>
-                        <td>{{ jogo.data_jogo }}</td>
-                        <td>{{ jogo.acertou|yesno:"Acertou,Errou" }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </article>
+    <h1>Relatório de Jogos por Tema</h1>
+    <a href="{% url 'gerar_relatorio_pdf' %}">Baixar Relatório em PDF</a>
+    {% for relatorio in relatorios %}
+        <h2>Tema: {{ relatorio.tema }}</h2>
+        <ul>
+            {% for jogo in relatorio.jogos %}
+                <li>Jogador: {{ jogo.jogador }} - Palavra: {{ jogo.palavra }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
 {% endblock %}

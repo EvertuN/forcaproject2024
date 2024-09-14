@@ -2,12 +2,18 @@
 {% load static %}
 
 {% block conteudo %}
-  <article data-theme="dark">
-      <h2>Cadastro de Usuários</h2>
-      <form method="post">
-          {% csrf_token %}
-          {{ form.as_div }}
-          <input type="submit" role="button" class="light" value="Cadastrar">
-      </form>
-  </article>
+<article data-theme="dark">
+    <h2>Criar conta</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+<!--        <select name="select" aria-label="Select" required>-->
+<!--            <option selected disabled value="">Select</option>-->
+<!--            <option value="Aluno">Aluno</option>-->
+<!--            <option value="Professor">Professor</option>-->
+<!--        </select>-->
+        <button type="submit">Cadastrar</button>
+    </form>
+
+</article>
 {% endblock %}

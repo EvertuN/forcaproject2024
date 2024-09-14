@@ -11,4 +11,11 @@
             {% endfor %}
         </ul>
     </article>
+    <article>
+        {% if request.user.is_authenticated and request.user.perfil.tipo_usuario == "Professor" %}
+            <h2>Adicionar</h2>
+            <p><a href="{% url 'adicionar_tema' %}">Adicionar Tema</a></p>
+            <p><a href="{% url 'adicionar_palavra' %}">Adicionar Palavra</a></p>
+        {% endif %}
+    </article>
 {% endblock %}

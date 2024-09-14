@@ -40,7 +40,10 @@ class Jogo(models.Model):
     tentativas_restantes = models.IntegerField(default=5)
     letras_corretas = models.CharField(max_length=100, blank=True)
     letras_erradas = models.CharField(max_length=100, blank=True)
-    jogador = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    jogador = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='jogos')
+    data_jogada = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.jogador.nome} - {self.palavra.palavra}'
+        return f'{self.jogador.username if self.jogador else "Desconhecido"} - {self.palavra.palavra}'
+
+

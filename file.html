@@ -19,20 +19,20 @@
                 <li>
                     <details class="dropdown">
                         <summary>
-                            {{ request.user.username }}
+                            {{ request.user.get_full_name }}
                         </summary>
                         <ul dir="rtl">
-                        {% csrf_token %}
-                            {% if request.user.perfil.tipo_usuario == 'Professor' %}
+                            {% csrf_token %}
+                            {% for tema in object_list %}
                                 <li>
-                                    <a href="{% url 'relatorio_view' %}">
-                                        Relatório
+                                    <a href="{% url 'gerar_relatorio_pdf' %}?tema_id={{ tema.id }}">Relatório{{ tema.nome }}
                                     </a>
                                 </li>
-                            {% endif %}
+                            {% empty %}
+                                <li>Nenhum tema disponível</li>
+                            {% endfor %}
                             <li><a id="logout-link" href="{% url 'logoutuser' %}">🔌 Sair</a></li>
                         </ul>
-
                     </details>
                 </li>
             {% else %}
@@ -67,5 +67,3 @@
 {% endblock %}
 </body>
 </html>
-
-

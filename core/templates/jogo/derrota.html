@@ -4,16 +4,23 @@
 {% block titulo %}Jogar Forca{% endblock %}
 
 {% block conteudo %}
-<article>
-    <form method="post">
-        {% csrf_token %}
-        <label>Você Perdeu :(</label>
-        <p>A palavra correta era: {{ palavra.palavra }}</p>
-        <a class="outline" href="{% url 'home' %}" role="button">Tentar Novamente</a>
-    </form>
-    <audio autoplay>
-        <source src="{% static 'media/derrota.mp3' %}" type="audio/mp3">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
-</article>
+    <article>
+        <form method="post">
+            {% csrf_token %}
+            <label>Você Perdeu :(</label>
+            <img id="imagemDerrota" src="{% static 'imagens/derrota.jpg' %}" alt="Derrota"
+                 style="align-self: flex-start; margin-right: 20px;">
+            <p>A palavra correta era: {{ palavra.palavra }}</p>
+            <a class="outline" href="{% url 'home' %}" role="button">Tentar Novamente</a>
+        </form>
+        <audio autoplay>
+            <source src="{% static 'media/derrota.mp3' %}" type="audio/mp3">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+    </article>
+    <script>
+        const imagem = document.getElementById('imagemDerrota');
+        imagem.style.height = '500px';
+        imagem.style.width = '500px';
+    </script>
 {% endblock %}

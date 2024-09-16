@@ -1,0 +1,1 @@
+web: gunicorn forca.wsgi:core --log-file -

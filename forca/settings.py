@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-
-import dj_database_url
 from environ import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,9 +30,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', 'forcaproject2024-evertun.up.railway.app']
-
-CSRF_TRUSTED_ORIGINS = [ 'https://forcaproject2024-evertun.up.railway.app' ]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -85,24 +81,16 @@ WSGI_APPLICATION = 'forca.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': env('DBNAME'),
-#         'HOST': env('DBHOST'),
-#         'USER': env('DBUSER'),
-#         'PASSWORD': env('DBPASSWORD'),
-#         'PORT': '3306',
-#     }
-# }
-#
-# database_url = env('DATABASE_URL')
-# DATABASES['default'] = dj_database_url.parse(env('database_url'))
-
 DATABASES = {
-    'default': env.db(),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DBNAME'),
+        'HOST': env('DBHOST'),
+        'USER': env('DBUSER'),
+        'PASSWORD': env('DBPASSWORD'),
+        'PORT': '3306',
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
